@@ -1,0 +1,25 @@
+{
+  "name": "z2h-site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Z2H Design Studio public website",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "marked": "15.0.12",
+    "next": "15.5.28",
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.0",
+    "@types/react": "19.2.0",
+    "@types/react-dom": "19.2.0",
+    "typescript": "5.8.3"
+  },
+  "engines": { "node": ">=20" }
+}
