@@ -13,6 +13,7 @@ export interface Pose {
   phase: number; walk: number;                     // walk cycle (in cycles) and how much of it (0..1)
   lx: number; ly: number;                          // where the eyes and head look, -1..1
   hRoll: number; hPitch: number;                   // extra head tilt
+  face: number;                                    // 0..1, how much the head turns back to face the viewer while the body walks sideways
   expr: Expr; blink: number; mouthS: number;
   aL: ArmP; aR: ArmP;
   dial: number; logo: number; spin: number;        // dial ring segments lit (0..12), logo scale, logo spin
@@ -20,7 +21,7 @@ export interface Pose {
 }
 
 export const basePose = (): Pose => ({
-  pop: 1, y: 0, sx: 1, sy: 1, zs: 1, yaw: 0, pitch: 0, roll: 0, phase: 0, walk: 0, lx: 0, ly: 0, hRoll: 0, hPitch: 0,
+  pop: 1, y: 0, sx: 1, sy: 1, zs: 1, yaw: 0, pitch: 0, roll: 0, phase: 0, walk: 0, lx: 0, ly: 0, hRoll: 0, hPitch: 0, face: 0,
   expr: "happy", blink: 0, mouthS: 1,
   aL: { f: 0, out: 0, sw: 0 }, aR: { f: 0, out: 0, sw: 0 }, dial: 12, logo: 1, spin: 0, slide: 0,
 });

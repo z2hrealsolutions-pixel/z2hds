@@ -21,6 +21,11 @@ Ziya listens for the window event `ziya:event` (detail = name), and for a `postM
 ## Test panel
 Add `?ziya=demo` to any page address to get a panel that triggers every moment.
 
+## While a message shows
+- The message appears at the instant the event happens (not after Ziya arrives), and stays through the walk and the reaction.
+- For as long as a message is showing, Ziya looks straight at the visitor, standing or walking: eyes centred (the pointer is ignored) and the head turned fully to the front. When walking, the body turns only about half as far (a three-quarter walk).
+- In the code this is `faceS` in `director.ts` (0 to 1), passed to the rig as `pose.face`. The flat version uses two extra strips for it, `walkFR` and `walkFL` (about 50 KB, loaded when idle). Rebuild only them with `ONLY=walkFR,walkFL node scripts/ziya/render-sprites.js <dir> 0.4`.
+
 ## Rebuilding the assets
 1. Model: `node scripts/ziya/bake-model.mjs Ziya.glb public/ziya/ziya.zm.gz` (needs `@gltf-transform/core`, `@gltf-transform/functions`, `meshoptimizer`).
 2. Sprites: run `NEXT_PUBLIC_ZIYA_LAB=1 npx next dev -p 3100`, then `node scripts/ziya/render-sprites.js frames 0.4` and `python3 scripts/ziya/pack-sprites.py frames public/ziya/sprites`.

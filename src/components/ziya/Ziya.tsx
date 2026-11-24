@@ -54,7 +54,7 @@ export default function Ziya() {
       if (canvasRef.current) canvasRef.current.style.display = t === "3d" ? "block" : "none";
       if (spriteRef.current) spriteRef.current.style.display = t === "3d" ? "none" : "block";
     };
-    const need2d = ["faces", "look", "walkR", "walkL"];
+    const need2d = ["faces", "look", "walkR", "walkL", "walkFR", "walkFL"];
     const load3d = () => {
       if (rigLoading) return rigLoading;
       rigLoading = (async () => {
@@ -169,7 +169,7 @@ export default function Ziya() {
       else dir.start(kind, clock(), useTier !== "3d");
       started = true; startLoop();
       if (useTier === "3d") idle(() => { void Promise.all(need2d.map((n) => sprites.load(n))); });
-      else idle(() => { void sprites.load("walkR"); void sprites.load("walkL"); });
+      else idle(() => { for (const n of ["walkR", "walkL", "walkFR", "walkFL"]) void sprites.load(n); });
     };
     const upgrade = () => {
       // 3D has arrived while the light version was running: swap when Ziya is between things

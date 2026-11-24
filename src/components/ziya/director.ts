@@ -5,7 +5,7 @@ import { FIGURE_MM, PX_PER_MM, VIEW } from "./rig";
 export type Tier = "3d" | "2d" | "still";
 export type Intent =
   | { kind: "clip"; name: string; u: number }
-  | { kind: "walk"; dir: 1 | -1; phase: number }
+  | { kind: "walk"; dir: 1 | -1; phase: number; face?: boolean }
   | { kind: "pose"; expr: Expr; lx: number; ly: number; blink: number };
 
 export interface Frame {
@@ -40,7 +40,7 @@ export class Director {
   private walkAmt = 0; private yawS = 0; private phase = 0; private dir: 1 | -1 = 1; private vx = 0;
   private corner: "L" | "R" = "R";
   private ptr: { x: number; y: number; t: number; has: boolean } = { x: 0, y: 0, t: -99, has: false };
-  private lookS = { x: 0, y: 0 };
+  private lookS = { x: 0, y: 0 }; private faceS = 0;   // faceS: 1 while a message is showing (eyes and head to the visitor)
   private nextDecide = 0; private nextBlink = 2; private blinkT = -1;
   private lastInput = 0; private curiousAt = -99; private sleeping = false;
   private bubble: { text: string; key: number; until: number } | null = null; private bubbleKey = 0;
@@ -84,18 +84,26 @@ export class Director {
   event(name: string, targetX?: number) {
     const key = name; if (this.now - (this.evtAt[key] ?? -9) < 1.5) return; this.evtAt[key] = this.now;
     if (this.tier === "still") { if (SAY[name]) this.say(SAY[name], 3.2); return; }
-    const walkTo = () => { if (targetX == null || this.hidden) return false; const to = clamp(targetX, this.leftX(), this.rightX()); if (Math.abs(to - this.x) < 60) return false; this.queue.push({ t: "walk", to }); return true; };
+    // Seconds the walk to the target will take (0 when Ziya is already there or cannot walk).
+    const walkTo = () => {
+      if (targetX == null || this.hidden) return 0;
+      const to = clamp(targetX, this.leftX(), this.rightX()); if (Math.abs(to - this.x) < 60) return 0;
+      this.queue.push({ t: "walk", to }); return Math.max(0.5, (Math.abs(to - this.x) / (1.25 * this.figurePx)) * 1.08);
+    };
     this.queue = this.queue.filter((a) => a.t === "wait" ? false : true); if (this.queue.length > 5) this.queue.length = 5;
     this.sleeping = false;
     const back = () => { this.queue.push({ t: "wait", s: 3.2 }); this.queue.push({ t: "walk", to: this.cornerX(Math.random() < 0.5 ? "L" : "R") }); };
+    // The message appears at once, while Ziya is still on his way (and stays until the reaction has played).
+    // While it shows, he looks at the visitor (see faceS in update).
+    const tell = (s: number) => { if (SAY[name]) this.say(SAY[name], s); };
     switch (name) {
-      case "file-dropped": this.queue.push({ t: "clip", name: "wow" }); if (walkTo()) { this.queue.push({ t: "clip", name: "hopHappy", say: SAY[name], sayFor: 2.6 }); back(); } else this.queue.push({ t: "say", text: SAY[name], s: 2.6 }); break;
-      case "estimate-ready": walkTo(); this.queue.push({ t: "clip", name: "cheer", say: SAY[name], sayFor: 2.8 }); back(); break;
-      case "upload-error": walkTo(); this.queue.push({ t: "clip", name: "worried", say: SAY[name], sayFor: 3 }); back(); break;
-      case "file-invalid": walkTo(); this.queue.push({ t: "clip", name: "sorry", say: SAY[name], sayFor: 3.6 }); back(); break;
-      case "form-sent": walkTo(); this.queue.push({ t: "clip", name: "thanks", say: SAY[name], sayFor: 2.6 }); back(); break;
-      case "footer": this.queue.push({ t: "clip", name: "goodbye", say: SAY[name], sayFor: 2.4 }); break;
-      case "click": this.queue.push({ t: "clip", name: "hopHappy", say: SAY.click, sayFor: 1.4 }); break;
+      case "file-dropped": { this.queue.push({ t: "clip", name: "wow" }); const w = walkTo(); tell(1.1 + w + 2.6); if (w) { this.queue.push({ t: "clip", name: "hopHappy" }); back(); } break; }
+      case "estimate-ready": { const w = walkTo(); tell(w + 2.8); this.queue.push({ t: "clip", name: "cheer" }); back(); break; }
+      case "upload-error": { const w = walkTo(); tell(w + 3); this.queue.push({ t: "clip", name: "worried" }); back(); break; }
+      case "file-invalid": { const w = walkTo(); tell(w + 3.6); this.queue.push({ t: "clip", name: "sorry" }); back(); break; }
+      case "form-sent": { const w = walkTo(); tell(w + 2.6); this.queue.push({ t: "clip", name: "thanks" }); back(); break; }
+      case "footer": tell(2.4 + 2.6); this.queue.push({ t: "clip", name: "goodbye" }); break;
+      case "click": tell(1.4 + 0.8); this.queue.push({ t: "clip", name: "hopHappy" }); break;
       case "hide": this.queue.length = 0; this.cur = null; this.queue.push({ t: "clip", name: "duck" }); break;
       case "show": this.hidden = false; this.queue.length = 0; this.cur = null; this.queue.push({ t: "clip", name: "peek" }); break;
     }
@@ -156,19 +164,23 @@ export class Director {
     // base pose: look, blink, thinking, breathing
     const hy = this.headY(), hx = this.x;
     let tx = 0, ty = 0;
-    if (this.ptr.has && !this.mobile) { tx = clamp((this.ptr.x - hx) / 420, -1, 1); ty = clamp(-(this.ptr.y - hy) / 300, -1, 1); }
+    // While a message shows, Ziya looks straight at the visitor (not at the pointer), standing or walking.
+    const speaking = !!this.bubble; this.faceS += ((speaking ? 1 : 0) - this.faceS) * (1 - Math.exp(-dt / 0.1));
+    if (this.ptr.has && !this.mobile && !speaking) { tx = clamp((this.ptr.x - hx) / 420, -1, 1); ty = clamp(-(this.ptr.y - hy) / 300, -1, 1); }
     const kk = 1 - Math.exp(-dt / 0.12); this.lookS.x += (tx - this.lookS.x) * kk; this.lookS.y += (ty - this.lookS.y) * kk;
     const wAmt = this.walkAmt; p.lx = this.lookS.x * (1 - 0.55 * wAmt); p.ly = this.lookS.y * (1 - 0.55 * wAmt);
     if (now > this.nextBlink && this.blinkT < 0) { this.blinkT = now; this.nextBlink = now + rnd(2.4, 6); }
     if (this.blinkT >= 0) { const b = (now - this.blinkT) / 0.17; if (b >= 1) this.blinkT = -1; else p.blink = 1 - Math.abs(2 * b - 1); }
-    const still = now - this.ptr.t; if (this.ptr.has && !this.mobile && !this.cur && still > 1.6 && still < 4) { p.expr = "neutral"; p.hRoll = 0.1; }
+    const still = now - this.ptr.t; if (this.ptr.has && !this.mobile && !this.cur && !speaking && still > 1.6 && still < 4) { p.expr = "neutral"; p.hRoll = 0.1; }
 
     // walk cycle state (smoothed so legs ease in and out)
     const mv = moving && Math.abs(this.vx) > 8;
     this.walkAmt += ((mv ? 1 : 0) - this.walkAmt) * (1 - Math.exp(-dt / 0.09));
-    this.yawS += ((mv ? this.dir * 48 * Math.PI / 180 : 0) - this.yawS) * (1 - Math.exp(-dt / 0.13));
-    p.walk = this.walkAmt; p.phase = this.phase; p.yaw = this.yawS;
+    // body turns less while talking (a three-quarter walk) and the head turns fully back to the visitor
+    this.yawS += ((mv ? this.dir * 48 * Math.PI / 180 * (1 - 0.55 * this.faceS) : 0) - this.yawS) * (1 - Math.exp(-dt / 0.13));
+    p.walk = this.walkAmt; p.phase = this.phase; p.yaw = this.yawS; p.face = this.faceS;
     if (overrides) merge(p, overrides as never);
+    p.lx *= 1 - this.faceS; p.ly *= 1 - this.faceS;
 
     // curious when the pointer comes close
     if (!this.mobile && this.ptr.has && !this.cur && !this.queue.length && this.tier !== "still" && now - this.curiousAt > 9 && Math.hypot(this.ptr.x - hx, this.ptr.y - hy) < 170 && now - this.ptr.t < 0.4) {
@@ -177,7 +189,7 @@ export class Director {
 
     // choose what the 2D version should show
     let intent: Intent;
-    if (this.walkAmt > 0.35 && !overrides) intent = { kind: "walk", dir: this.dir, phase: this.phase };
+    if (this.walkAmt > 0.35 && !overrides) intent = { kind: "walk", dir: this.dir, phase: this.phase, face: this.faceS > 0.5 };
     else if (name && CLIPS[name] && name !== "duck") intent = { kind: "clip", name, u };
     else intent = { kind: "pose", expr: p.expr, lx: p.lx, ly: p.ly, blink: p.blink };
     this.hiddenNow = false;

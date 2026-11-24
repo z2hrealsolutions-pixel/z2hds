@@ -33,7 +33,10 @@ export class Sprites {
       return null;
     }
     if (it.kind === "walk") {
-      const nm = it.dir > 0 ? "walkR" : "walkL"; if (!this.ready(nm)) { void this.load(nm); return null; }
+      // while a message shows he walks three-quarter on, with his face to the visitor (walkFR / walkFL)
+      let nm = it.dir > 0 ? "walkR" : "walkL";
+      if (it.face && this.has("walkFR")) { const f = it.dir > 0 ? "walkFR" : "walkFL"; if (this.ready(f)) nm = f; else void this.load(f); }
+      if (!this.ready(nm)) { void this.load(nm); return null; }
       return { strip: nm, i: Math.floor((((it.phase % 1) + 1) % 1) * 8) % 8 };
     }
     if (it.expr === "happy") {

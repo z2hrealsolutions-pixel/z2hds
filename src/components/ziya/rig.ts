@@ -156,7 +156,7 @@ export function createRig(canvas: HTMLCanvasElement, data: ModelData, opts: { pi
     root.position.y = p.y + bob;
     root.scale.set(p.pop * p.sx, p.pop * (p.sy + br), p.pop * p.sx * p.zs);
     bodyG.rotation.y = p.yaw + p.lx * 0.16 * (1 - wa); bodyG.rotation.x = p.pitch + 0.07 * wa; bodyG.rotation.z = p.roll + 0.035 * wa * f;
-    head.rotation.y = p.lx * 0.55 - p.yaw * 0.5; head.rotation.x = -p.ly * 0.3 + p.hPitch - 0.05 * wa; head.rotation.z = p.hRoll + Math.sin(t * 1.3) * 0.012 - p.lx * 0.04;
+    head.rotation.y = p.lx * 0.55 - p.yaw * (0.5 + 0.5 * p.face); head.rotation.x = -p.ly * 0.3 + p.hPitch - 0.05 * wa; head.rotation.z = p.hRoll + Math.sin(t * 1.3) * 0.012 - p.lx * 0.04;
     face.position.set(p.lx * 4.4, 37 + p.ly * 2.4, 0); faceMouth.position.set(p.lx * -2.2, p.ly * -1.2, 0);
     const A = 34 * D * wa;
     for (const [s, sg] of [["L", 1], ["R", -1]] as const) {
