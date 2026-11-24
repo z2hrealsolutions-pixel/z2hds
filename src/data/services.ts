@@ -6,6 +6,9 @@ export type Service = {
   long: string;
   bullets: string[];
   photo: { src: string; alt: string; pos?: string } | null;
+  slides?: { src: string; alt: string; caption: string }[];
+  studio?: { name: string; by: string; href: string };
+  more?: { label: string; href: string };
   cta: { label: string; href: string };
 };
 
@@ -14,17 +17,17 @@ export const SERVICES: Service[] = [
     slug: "3d-printing",
     title: "3D printing, single and multi-colour",
     homeTitle: "3D printing, single and multi&#8209;colour",
-    short: "FDM printing in PLA+, PETG, ABS and TPU, in one colour or several, from a single part to a batch. Parts larger than the printer are printed in pieces and joined.",
-    long: "Send a 3D file and we print it. Use one colour or several in the same part, from a single piece to a batch of hundreds. Parts that are bigger than the printer are printed in pieces and joined, so size is not a limit.",
+    short: "FDM printing in PLA, PETG, ABS/ASA and TPU, in one colour or several, from a single part to a batch. Parts larger than the printer are printed in pieces and joined.",
+    long: "Send a 3D file and we print it. Use one colour or several in the same part, from a single piece to a batch of hundreds.",
     bullets: [
-      "PLA+, PETG, ABS, TPU (flexible) and Lightweight PLA",
+      "PLA+, PLA, PLA variants, PETG, PETG variants, ABS/ASA, TPU (flexible) and Lightweight PLA",
       "One colour, or several colours in one part",
       "One piece, or a batch that looks the same from first to last",
-      "Up to about 25 cm in one piece, bigger parts printed in pieces and joined",
       "Instant price range for STL, 3MF and OBJ files",
     ],
     photo: { src: "/photos/realities-multicolour-bust-on-plinth.webp", alt: "Multi-colour 3D printed bust of a man in a suit and red tie, on a black plinth", pos: "50% 30%" },
     cta: { label: "Get an instant price", href: "/estimate" },
+    more: { label: "See all materials", href: "/services/materials" },
   },
   {
     slug: "custom-figurines",
@@ -38,7 +41,8 @@ export const SERVICES: Service[] = [
       "Display cases and printed name plates",
       "Gifts for weddings, birthdays and awards",
     ],
-    photo: { src: "/photos/realities-wedding-couple-statues.webp", alt: "White 3D printed statues of a wedding couple, groom in uniform", pos: "50% 22%" },
+    photo: { src: "/photos/realities-couple-bust-gold.webp", alt: "Gold-coloured 3D printed couple bust made from a photo", pos: "50% 70%" },
+    studio: { name: "Realities", by: "by Z2H DS", href: "/gallery?studio=realities" },
     cta: { label: "Ask about a figurine", href: "/contact?topic=figurine#form" },
   },
   {
@@ -52,7 +56,7 @@ export const SERVICES: Service[] = [
       "Jigs, brackets, housings and fixtures",
       "Designed to print well, so the part works the first time",
     ],
-    photo: { src: "/photos/design-custom-jig-bracket.webp", alt: "Black 3D printed jig bracket, a functional part designed in CAD" },
+    photo: { src: "/photos/design-cad-model-threaded-part.webp", alt: "3D printed threaded part held in front of its CAD model on a laptop screen", pos: "50% 45%" },
     cta: { label: "Ask about modelling", href: "/contact?topic=cad#form" },
   },
   {
@@ -66,7 +70,7 @@ export const SERVICES: Service[] = [
       "Working prototypes you can test and show",
       "Circuit and housing developed together",
     ],
-    photo: { src: "/photos/lifestyles-light-up-letters-ttj.webp", alt: "3D printed light-up letters spelling TTJ, glowing warm white", pos: "50% 60%" },
+    photo: { src: "/photos/uniqs-light-up-letters-ttj-centred.webp", alt: "3D printed light-up letters spelling TTJ, glowing warm white" },
     cta: { label: "Talk about a product", href: "/contact?topic=electronics#form" },
   },
   {
@@ -80,7 +84,12 @@ export const SERVICES: Service[] = [
       "Comparing two or three design options",
       "Clear findings in plain words, not a wall of numbers",
     ],
-    photo: { src: "/photos/design-grid-enclosure-prototype.webp", alt: "White 3D printed enclosure prototype with grid panels, on the print bed" },
+    photo: { src: "/photos/design-simulation-stress-box-frame.webp", alt: "Stress simulation of a box frame under load, coloured by von Mises stress" },
+    slides: [
+      { src: "/photos/design-simulation-stress-box-frame.webp", alt: "Stress simulation of a box frame under load, coloured by von Mises stress", caption: "Stress check: box frame under load" },
+      { src: "/photos/design-simulation-stress-table-mount.webp", alt: "Stress simulation of a plate on a single post under a spread load", caption: "Stress check: plate on a single post" },
+      { src: "/photos/design-simulation-displacement-bracket.webp", alt: "Deflection simulation of a bent bracket under load, coloured by displacement", caption: "Deflection check: bent bracket" },
+    ],
     cta: { label: "Ask about analysis", href: "/contact?topic=simulation#form" },
   },
   {
@@ -99,10 +108,15 @@ export const SERVICES: Service[] = [
   },
 ];
 
+export const MATERIAL_NAMES = ["PLA+", "PLA", "PLA variants", "PETG", "PETG variants", "ABS/ASA", "TPU (flexible)", "Lightweight PLA"];
+
 export const MATERIALS = [
-  { name: "PLA+", use: "The everyday choice. Good detail, strong enough for display pieces, gifts and most prototypes." },
-  { name: "PETG", use: "Tougher and handles moisture and some heat better than PLA. Good for functional parts." },
-  { name: "ABS", use: "Heat resistant and sturdy. Used for parts that sit near warm places or take knocks." },
-  { name: "TPU", use: "Flexible and rubbery. Used for grips, seals, cases and shock absorbing parts." },
+  { name: "PLA+", use: "The everyday choice. A tougher PLA with good detail. Strong enough for display pieces, gifts and most prototypes." },
+  { name: "PLA", use: "Easy to print with a clean finish and the widest choice of colours. Good for models, statues and decorative pieces." },
+  { name: "PLA variants", use: "PLA in special finishes and blends. Ask us which ones we have in stock for your job." },
+  { name: "PETG", use: "Tougher than PLA, and handles moisture and some heat better. Good for functional parts such as brackets, covers and holders." },
+  { name: "PETG variants", use: "PETG in special finishes and blends, for parts that need PETG's toughness with a different look. Ask us what is in stock." },
+  { name: "ABS/ASA", use: "Hard, sturdy plastics that handle heat better than PLA. ASA also stands up to sunlight, so it suits parts used outdoors." },
+  { name: "TPU (flexible)", use: "Flexible and rubbery. Used for grips, seals, cases and shock absorbing parts." },
   { name: "Lightweight PLA", use: "Prints with a foamed, lighter body. Good for large display pieces and props that must be easy to carry." },
 ];

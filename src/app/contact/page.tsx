@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Suspense } from "react";
 import ContactForm from "./ContactForm";
 import { SITE, waHref, waIsLive } from "@/lib/site";
 import { WaIcon } from "@/components/Icons";
 
 export const metadata: Metadata = {
   title: "Contact: visit, call or message Z2H Design Studio",
-  description: "Z2H Design Studio, 6 Suramya Mawatha, Wattegedara, Maharagama, Sri Lanka. Open 24 hours. Call +94 70 676 0506 or email info@z2hdesignstudio.com.",
+  description: "Z2H Design Studio, 6 Suramya Mawatha, Wattegedara, Maharagama, Sri Lanka. Open 24 hours. Call or WhatsApp +94 70 22 99 100, or email info@z2hdesignstudio.com.",
   alternates: { canonical: "/contact" },
 };
 
@@ -20,7 +19,7 @@ export default function ContactPage() {
       <div className="phead"><div className="wrap">
         <div className="crumbs"><Link href="/">Home</Link> / Contact</div>
         <h1>Contact</h1>
-        <p className="lead">Tell us what you are imagining. A call, a message or a visit all work, and we are open 24 hours.</p>
+        <p className="lead">Tell us what you are imagining.</p>
       </div></div>
 
       <div className="wrap psec" style={{ paddingTop: 40 }}>
@@ -46,7 +45,7 @@ export default function ContactPage() {
           </div>
           <div className="ccard">
             <h2>Company</h2>
-            <p>{SITE.legalName}<br />Reg. No. {SITE.regNo}</p>
+            <p>{SITE.legalName}</p>
             <p>Delivery by PickMe Flash or Uber.</p>
           </div>
         </div>
@@ -63,7 +62,7 @@ export default function ContactPage() {
             <h2>What are you imagining?</h2>
             <p className="muted" style={{ marginTop: 16 }}>Fill this in and choose how to send it. The message opens in WhatsApp or in your email app, ready to send. We do not store what you type here.</p>
           </div>
-          <Suspense fallback={null}><ContactForm /></Suspense>
+          <ContactForm />
         </div>
       </div></section>
     </>

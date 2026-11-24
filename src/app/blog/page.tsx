@@ -5,7 +5,7 @@ import { fmtDate, getPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
   title: "Blog: 3D printing guides for Sri Lanka",
-  description: "Plain-English guides from Z2H Design Studio: 3D printing costs, materials, file types, multi-colour printing and statues from photos.",
+  description: "Guides from Z2H Design Studio in Maharagama: what 3D printing is, 3D printing machines, materials and filament, costs, file types, multi-colour printing and statues from photos.",
   alternates: { canonical: "/blog" },
 };
 
@@ -16,7 +16,6 @@ export default function BlogIndex() {
       <div className="phead"><div className="wrap">
         <div className="crumbs"><Link href="/">Home</Link> / Blog</div>
         <h1>Blog</h1>
-        <p className="lead">Plain-English guides to 3D printing, from the people who print every day in Maharagama.</p>
       </div></div>
       <div className="wrap psec" style={{ paddingTop: 40 }}>
         <div className="blog-grid">

@@ -1,5 +1,104 @@
 [
  {
+  "slug": "design-cad-model-threaded-part",
+  "src": "/photos/design-cad-model-threaded-part.webp",
+  "cat": "design",
+  "alt": "3D printed threaded part held in front of its CAD model on a laptop screen",
+  "title": "CAD model and printed part",
+  "w": 720,
+  "h": 655
+ },
+ {
+  "slug": "design-simulation-stress-box-frame",
+  "src": "/photos/design-simulation-stress-box-frame.webp",
+  "cat": "design",
+  "alt": "Stress simulation of a box frame under load, coloured by von Mises stress",
+  "title": "Stress simulation, box frame",
+  "w": 1147,
+  "h": 728
+ },
+ {
+  "slug": "design-simulation-stress-table-mount",
+  "src": "/photos/design-simulation-stress-table-mount.webp",
+  "cat": "design",
+  "alt": "Stress simulation of a plate on a single post under a spread load",
+  "title": "Stress simulation, plate on a post",
+  "w": 997,
+  "h": 618
+ },
+ {
+  "slug": "design-simulation-displacement-bracket",
+  "src": "/photos/design-simulation-displacement-bracket.webp",
+  "cat": "design",
+  "alt": "Deflection simulation of a bent bracket under load, coloured by displacement",
+  "title": "Deflection simulation, bracket",
+  "w": 906,
+  "h": 597
+ },
+ {
+  "slug": "design-grid-enclosure-prototype",
+  "src": "/photos/design-grid-enclosure-prototype.webp",
+  "cat": "design",
+  "alt": "White 3D printed enclosure prototype with grid panels, on the print bed",
+  "title": "Enclosure prototype",
+  "w": 960,
+  "h": 1280
+ },
+ {
+  "slug": "design-gopro-mount",
+  "src": "/photos/design-gopro-mount.webp",
+  "cat": "design",
+  "alt": "Custom 3D printed GoPro mount with a red funnel part",
+  "title": "Custom GoPro mount",
+  "w": 720,
+  "h": 1280
+ },
+ {
+  "slug": "design-car-trim-panel",
+  "src": "/photos/design-car-trim-panel.webp",
+  "cat": "design",
+  "alt": "Black textured 3D printed car trim panel with raised lettering",
+  "title": "Car trim panel",
+  "w": 720,
+  "h": 1280
+ },
+ {
+  "slug": "design-custom-jig-bracket",
+  "src": "/photos/design-custom-jig-bracket.webp",
+  "cat": "design",
+  "alt": "Black 3D printed jig bracket, a functional part designed in CAD",
+  "title": "Jig bracket",
+  "w": 1280,
+  "h": 960
+ },
+ {
+  "slug": "design-robotic-hand-prototype",
+  "src": "/photos/design-robotic-hand-prototype.webp",
+  "cat": "design",
+  "alt": "Black 3D printed robotic hand prototype next to a human hand",
+  "title": "Robotic hand prototype",
+  "w": 960,
+  "h": 1280
+ },
+ {
+  "slug": "design-flexible-tpu-geometric-shell",
+  "src": "/photos/design-flexible-tpu-geometric-shell.webp",
+  "cat": "design",
+  "alt": "Flexible white 3D printed geometric shell in TPU",
+  "title": "Flexible TPU shell",
+  "w": 960,
+  "h": 1280
+ },
+ {
+  "slug": "design-wireframe-structure",
+  "src": "/photos/design-wireframe-structure.webp",
+  "cat": "design",
+  "alt": "Yellow 3D printed wireframe structure prototype",
+  "title": "Wireframe prototype",
+  "w": 900,
+  "h": 1600
+ },
+ {
   "slug": "realities-multicolour-mini-figurine-microphone",
   "src": "/photos/realities-multicolour-mini-figurine-microphone.webp",
   "cat": "realities",
@@ -15,15 +114,6 @@
   "alt": "Multi-colour 3D printed bust of a man in a suit and red tie, on a black plinth",
   "title": "Multi-colour bust",
   "w": 720,
-  "h": 1280
- },
- {
-  "slug": "lifestyles-light-up-letters-ttj",
-  "src": "/photos/lifestyles-light-up-letters-ttj.webp",
-  "cat": "lifestyles",
-  "alt": "3D printed light-up letters spelling TTJ, glowing warm white",
-  "title": "Light-up letters",
-  "w": 960,
   "h": 1280
  },
  {
@@ -45,47 +135,11 @@
   "h": 1280
  },
  {
-  "slug": "lifestyles-twisted-knot-vases",
-  "src": "/photos/lifestyles-twisted-knot-vases.webp",
-  "cat": "lifestyles",
-  "alt": "Pair of brown 3D printed vases with twisted knot shapes",
-  "title": "Twisted knot vases",
-  "w": 960,
-  "h": 1280
- },
- {
   "slug": "realities-couple-statue-display-case",
   "src": "/photos/realities-couple-statue-display-case.webp",
   "cat": "realities",
   "alt": "3D printed couple statue in a clear display case with a printed base",
   "title": "Couple statue in a display case",
-  "w": 720,
-  "h": 1280
- },
- {
-  "slug": "design-grid-enclosure-prototype",
-  "src": "/photos/design-grid-enclosure-prototype.webp",
-  "cat": "design",
-  "alt": "White 3D printed enclosure prototype with grid panels, on the print bed",
-  "title": "Enclosure prototype",
-  "w": 960,
-  "h": 1280
- },
- {
-  "slug": "design-gopro-mount",
-  "src": "/photos/design-gopro-mount.webp",
-  "cat": "design",
-  "alt": "Custom 3D printed GoPro mount with a red funnel part",
-  "title": "Custom GoPro mount",
-  "w": 720,
-  "h": 1280
- },
- {
-  "slug": "lifestyles-custom-toy-parts",
-  "src": "/photos/lifestyles-custom-toy-parts.webp",
-  "cat": "lifestyles",
-  "alt": "Set of white 3D printed toy parts ready for assembly",
-  "title": "Custom toy parts",
   "w": 720,
   "h": 1280
  },
@@ -99,24 +153,6 @@
   "h": 1280
  },
  {
-  "slug": "design-car-trim-panel",
-  "src": "/photos/design-car-trim-panel.webp",
-  "cat": "design",
-  "alt": "Black textured 3D printed car trim panel with raised lettering",
-  "title": "Car trim panel",
-  "w": 720,
-  "h": 1280
- },
- {
-  "slug": "lifestyles-microphone-hand-trophy",
-  "src": "/photos/lifestyles-microphone-hand-trophy.webp",
-  "cat": "lifestyles",
-  "alt": "3D printed trophy of a hand holding a microphone, on a white base",
-  "title": "Microphone hand trophy",
-  "w": 960,
-  "h": 1280
- },
- {
   "slug": "realities-50cm-statue-scales-of-justice",
   "src": "/photos/realities-50cm-statue-scales-of-justice.webp",
   "cat": "realities",
@@ -126,24 +162,6 @@
   "h": 1280
  },
  {
-  "slug": "lifestyles-spiral-textured-vase",
-  "src": "/photos/lifestyles-spiral-textured-vase.webp",
-  "cat": "lifestyles",
-  "alt": "Brown 3D printed vase with a spiral lattice texture",
-  "title": "Spiral textured vase",
-  "w": 1200,
-  "h": 1600
- },
- {
-  "slug": "design-custom-jig-bracket",
-  "src": "/photos/design-custom-jig-bracket.webp",
-  "cat": "design",
-  "alt": "Black 3D printed jig bracket, a functional part designed in CAD",
-  "title": "Jig bracket",
-  "w": 1280,
-  "h": 960
- },
- {
   "slug": "realities-couple-bust-gold",
   "src": "/photos/realities-couple-bust-gold.webp",
   "cat": "realities",
@@ -151,15 +169,6 @@
   "title": "Gold couple bust",
   "w": 900,
   "h": 1600
- },
- {
-  "slug": "design-robotic-hand-prototype",
-  "src": "/photos/design-robotic-hand-prototype.webp",
-  "cat": "design",
-  "alt": "Black 3D printed robotic hand prototype next to a human hand",
-  "title": "Robotic hand prototype",
-  "w": 960,
-  "h": 1280
  },
  {
   "slug": "realities-caricature-figurine",
@@ -180,75 +189,12 @@
   "h": 1280
  },
  {
-  "slug": "design-flexible-tpu-geometric-shell",
-  "src": "/photos/design-flexible-tpu-geometric-shell.webp",
-  "cat": "design",
-  "alt": "Flexible white 3D printed geometric shell in TPU",
-  "title": "Flexible TPU shell",
-  "w": 960,
-  "h": 1280
- },
- {
   "slug": "realities-batch-king-busts",
   "src": "/photos/realities-batch-king-busts.webp",
   "cat": "realities",
   "alt": "A batch of identical 3D printed king busts, printed for a bulk order",
   "title": "Batch of king busts",
   "w": 720,
-  "h": 1280
- },
- {
-  "slug": "lifestyles-open-hand-sculpture",
-  "src": "/photos/lifestyles-open-hand-sculpture.webp",
-  "cat": "lifestyles",
-  "alt": "White 3D printed open hand sculpture on a wooden-look base",
-  "title": "Open hand sculpture",
-  "w": 960,
-  "h": 1280
- },
- {
-  "slug": "lifestyles-light-up-letter-i",
-  "src": "/photos/lifestyles-light-up-letter-i.webp",
-  "cat": "lifestyles",
-  "alt": "Red and white 3D printed light-up letter I",
-  "title": "Light-up letter",
-  "w": 1200,
-  "h": 1600
- },
- {
-  "slug": "lifestyles-love-letters-gift",
-  "src": "/photos/lifestyles-love-letters-gift.webp",
-  "cat": "lifestyles",
-  "alt": "Red and white 3D printed LOVE letters gift on a 3D printer",
-  "title": "LOVE letters gift",
-  "w": 960,
-  "h": 1280
- },
- {
-  "slug": "lifestyles-halloween-pumpkin",
-  "src": "/photos/lifestyles-halloween-pumpkin.webp",
-  "cat": "lifestyles",
-  "alt": "3D printed Halloween pumpkin lantern",
-  "title": "Halloween pumpkin lantern",
-  "w": 720,
-  "h": 1280
- },
- {
-  "slug": "lifestyles-f1-car-models",
-  "src": "/photos/lifestyles-f1-car-models.webp",
-  "cat": "lifestyles",
-  "alt": "Two white 3D printed Formula 1 car models",
-  "title": "Formula 1 car models",
-  "w": 1600,
-  "h": 1200
- },
- {
-  "slug": "lifestyles-masquerade-mask-events",
-  "src": "/photos/lifestyles-masquerade-mask-events.webp",
-  "cat": "lifestyles",
-  "alt": "Black 3D printed masquerade mask made for an event",
-  "title": "Event masquerade mask",
-  "w": 960,
   "h": 1280
  },
  {
@@ -261,47 +207,137 @@
   "h": 1600
  },
  {
-  "slug": "lifestyles-planter-pot-with-legs",
-  "src": "/photos/lifestyles-planter-pot-with-legs.webp",
-  "cat": "lifestyles",
+  "slug": "realities-wedding-couple-statues",
+  "src": "/photos/realities-wedding-couple-statues.webp",
+  "cat": "realities",
+  "alt": "White 3D printed statues of a wedding couple, groom in uniform",
+  "title": "Wedding couple statues",
+  "w": 720,
+  "h": 1280
+ },
+ {
+  "slug": "uniqs-light-up-letters-ttj",
+  "src": "/photos/uniqs-light-up-letters-ttj.webp",
+  "cat": "uniqs",
+  "alt": "3D printed light-up letters spelling TTJ, glowing warm white",
+  "title": "Light-up letters",
+  "w": 960,
+  "h": 1280
+ },
+ {
+  "slug": "uniqs-twisted-knot-vases",
+  "src": "/photos/uniqs-twisted-knot-vases.webp",
+  "cat": "uniqs",
+  "alt": "Pair of brown 3D printed vases with twisted knot shapes",
+  "title": "Twisted knot vases",
+  "w": 960,
+  "h": 1280
+ },
+ {
+  "slug": "uniqs-custom-toy-parts",
+  "src": "/photos/uniqs-custom-toy-parts.webp",
+  "cat": "uniqs",
+  "alt": "Set of white 3D printed toy parts ready for assembly",
+  "title": "Custom toy parts",
+  "w": 720,
+  "h": 1280
+ },
+ {
+  "slug": "uniqs-microphone-hand-trophy",
+  "src": "/photos/uniqs-microphone-hand-trophy.webp",
+  "cat": "uniqs",
+  "alt": "3D printed trophy of a hand holding a microphone, on a white base",
+  "title": "Microphone hand trophy",
+  "w": 960,
+  "h": 1280
+ },
+ {
+  "slug": "uniqs-spiral-textured-vase",
+  "src": "/photos/uniqs-spiral-textured-vase.webp",
+  "cat": "uniqs",
+  "alt": "Brown 3D printed vase with a spiral lattice texture",
+  "title": "Spiral textured vase",
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "slug": "uniqs-open-hand-sculpture",
+  "src": "/photos/uniqs-open-hand-sculpture.webp",
+  "cat": "uniqs",
+  "alt": "White 3D printed open hand sculpture on a wooden-look base",
+  "title": "Open hand sculpture",
+  "w": 960,
+  "h": 1280
+ },
+ {
+  "slug": "uniqs-light-up-letter-i",
+  "src": "/photos/uniqs-light-up-letter-i.webp",
+  "cat": "uniqs",
+  "alt": "Red and white 3D printed light-up letter I",
+  "title": "Light-up letter",
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "slug": "uniqs-love-letters-gift",
+  "src": "/photos/uniqs-love-letters-gift.webp",
+  "cat": "uniqs",
+  "alt": "Red and white 3D printed LOVE letters gift on a 3D printer",
+  "title": "LOVE letters gift",
+  "w": 960,
+  "h": 1280
+ },
+ {
+  "slug": "uniqs-halloween-pumpkin",
+  "src": "/photos/uniqs-halloween-pumpkin.webp",
+  "cat": "uniqs",
+  "alt": "3D printed Halloween pumpkin lantern",
+  "title": "Halloween pumpkin lantern",
+  "w": 720,
+  "h": 1280
+ },
+ {
+  "slug": "uniqs-f1-car-models",
+  "src": "/photos/uniqs-f1-car-models.webp",
+  "cat": "uniqs",
+  "alt": "Two white 3D printed Formula 1 car models",
+  "title": "Formula 1 car models",
+  "w": 1600,
+  "h": 1200
+ },
+ {
+  "slug": "uniqs-masquerade-mask-events",
+  "src": "/photos/uniqs-masquerade-mask-events.webp",
+  "cat": "uniqs",
+  "alt": "Black 3D printed masquerade mask made for an event",
+  "title": "Event masquerade mask",
+  "w": 960,
+  "h": 1280
+ },
+ {
+  "slug": "uniqs-planter-pot-with-legs",
+  "src": "/photos/uniqs-planter-pot-with-legs.webp",
+  "cat": "uniqs",
   "alt": "Brown 3D printed planter pot with arms and legs, on the print bed",
   "title": "Planter with legs",
   "w": 960,
   "h": 1280
  },
  {
-  "slug": "design-wireframe-structure",
-  "src": "/photos/design-wireframe-structure.webp",
-  "cat": "design",
-  "alt": "Yellow 3D printed wireframe structure prototype",
-  "title": "Wireframe prototype",
-  "w": 900,
-  "h": 1600
- },
- {
-  "slug": "lifestyles-miniature-cannon-model",
-  "src": "/photos/lifestyles-miniature-cannon-model.webp",
-  "cat": "lifestyles",
+  "slug": "uniqs-miniature-cannon-model",
+  "src": "/photos/uniqs-miniature-cannon-model.webp",
+  "cat": "uniqs",
   "alt": "White 3D printed miniature cannon on a decorated dome",
   "title": "Miniature cannon model",
   "w": 720,
   "h": 1280
  },
  {
-  "slug": "lifestyles-miniature-office-chair",
-  "src": "/photos/lifestyles-miniature-office-chair.webp",
-  "cat": "lifestyles",
+  "slug": "uniqs-miniature-office-chair",
+  "src": "/photos/uniqs-miniature-office-chair.webp",
+  "cat": "uniqs",
   "alt": "Black 3D printed miniature office chair model",
   "title": "Miniature office chair",
-  "w": 720,
-  "h": 1280
- },
- {
-  "slug": "realities-wedding-couple-statues",
-  "src": "/photos/realities-wedding-couple-statues.webp",
-  "cat": "realities",
-  "alt": "White 3D printed statues of a wedding couple, groom in uniform",
-  "title": "Wedding couple statues",
   "w": 720,
   "h": 1280
  }

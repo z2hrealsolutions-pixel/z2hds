@@ -1,6 +1,5 @@
 "use client";
-import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SITE } from "@/lib/site";
 
 const TOPICS: Record<string, string> = {
@@ -18,9 +17,12 @@ const field: React.CSSProperties = { font: "inherit", width: "100%", padding: "1
 const label: React.CSSProperties = { display: "grid", gap: 6, fontSize: 14, fontWeight: 600, minWidth: 0 };
 
 export default function ContactForm() {
-  const sp = useSearchParams();
-  const t = sp.get("topic");
-  const [topic, setTopic] = useState(t && TOPICS[t] ? t : "print");
+  const [topic, setTopic] = useState("print");
+  // read ?topic= after load, so the form is in the page as sent by the server
+  useEffect(() => {
+    const t = new URLSearchParams(window.location.search).get("topic");
+    if (t && TOPICS[t]) setTopic(t);
+  }, []);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [msg, setMsg] = useState("");

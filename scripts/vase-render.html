@@ -1,0 +1,53 @@
+<!-- How public/img/vase-4-colour.webp was made: serve this folder with three@0.170.0 in node_modules, open in Chromium, save window.__png. -->
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent}</style>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js"}}</script></head><body>
+<script type="module">
+import * as THREE from "three";
+const W=1040,H=1120;
+const r=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});
+r.setSize(W,H); r.setClearColor(0x000000,0); r.outputColorSpace=THREE.SRGBColorSpace;
+r.toneMapping=THREE.ACESFilmicToneMapping; r.toneMappingExposure=1.05;
+document.body.appendChild(r.domElement);
+const scene=new THREE.Scene();
+const cam=new THREE.PerspectiveCamera(28,W/H,0.1,50); cam.position.set(0,2.05,4.3); cam.lookAt(0,0.78,0);
+// profile: radius by height t (0..1), height 1.25
+const HT=1.6;
+function prof(t){
+  const bulge=0.34*Math.exp(-Math.pow((t-0.38)/0.30,2));
+  const neck=0.17; const lip=0.09*Math.exp(-Math.pow((t-1)/0.10,2));
+  const base=0.10*Math.exp(-Math.pow(t/0.25,2));
+  return neck+bulge+lip+base;
+}
+const cols=[new THREE.Color("#1F4FD8"),new THREE.Color("#6C9CFF"),new THREE.Color("#EEF3FF"),new THREE.Color("#F2B233")];
+function bandCol(t,a){ const u=t+0.045*Math.sin(3*a+1.0); return u<0.3?cols[0]:u<0.55?cols[1]:u<0.8?cols[2]:cols[3]; }
+const NY=800, NA=200, LAYERS=150, wall=0.02;
+function build(inner){
+  const pos=[],col=[],idx=[];
+  for(let j=0;j<=NY;j++){const t=j/NY;
+    for(let i=0;i<=NA;i++){const a=i/NA*Math.PI*2;
+      let rad=prof(t)*(1+0.045*Math.sin(9*a+7.5*t))*(1+0.006*Math.sin(t*LAYERS*Math.PI*2));
+      if(inner) rad=Math.max(rad-wall,0.01);
+      pos.push(Math.cos(a)*rad, t*HT, Math.sin(a)*rad);
+      const c=bandCol(t,a).clone(); if(inner) c.multiplyScalar(0.55); col.push(c.r,c.g,c.b);
+    }}
+  for(let j=0;j<NY;j++)for(let i=0;i<NA;i++){const a=j*(NA+1)+i,b=a+NA+1;
+    if(inner) idx.push(a,a+1,b, b,a+1,b+1); else idx.push(a,b,a+1, b,b+1,a+1);}
+  const g=new THREE.BufferGeometry(); g.setAttribute("position",new THREE.Float32BufferAttribute(pos,3));
+  g.setAttribute("color",new THREE.Float32BufferAttribute(col,3)); g.setIndex(idx); g.computeVertexNormals(); return g;
+}
+const mat=new THREE.MeshStandardMaterial({vertexColors:true,roughness:0.5,metalness:0.0});
+const outer=new THREE.Mesh(build(false),mat), inner=new THREE.Mesh(build(true),mat);
+// lip ring joining inner and outer at the top
+const rt=prof(1)*1.0; const lipG=new THREE.RingGeometry(rt-wall-0.01,rt+0.03,180); lipG.rotateX(-Math.PI/2); lipG.translate(0,HT,0);
+const lip=new THREE.Mesh(lipG,new THREE.MeshStandardMaterial({color:cols[3],roughness:0.5,side:THREE.DoubleSide}));
+// base disc
+const bG=new THREE.CircleGeometry(prof(0)*1.05,180); bG.rotateX(Math.PI/2);
+const base=new THREE.Mesh(bG,new THREE.MeshStandardMaterial({color:cols[0]}));
+const vase=new THREE.Group(); vase.add(outer,inner,lip,base); vase.rotation.y=0.4; scene.add(vase);
+scene.add(new THREE.HemisphereLight(0xdfe8ff,0x0b1020,0.9));
+const key=new THREE.DirectionalLight(0xffffff,2.4); key.position.set(-2.5,3.2,3); scene.add(key);
+const rim=new THREE.DirectionalLight(0x6c9cff,2.2); rim.position.set(3,1.5,-2.5); scene.add(rim);
+const fill=new THREE.DirectionalLight(0xffffff,0.6); fill.position.set(2.5,0.5,3); scene.add(fill);
+r.render(scene,cam);
+window.__png=r.domElement.toDataURL("image/png");
+</script></body></html>

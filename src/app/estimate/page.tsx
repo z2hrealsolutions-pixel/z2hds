@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
+import EstimateFrame from "./EstimateFrame";
 import Cta from "@/components/Cta";
 import { SITE, waHref, waIsLive } from "@/lib/site";
 
@@ -28,13 +29,11 @@ export default function EstimatePage() {
           <div><span className="n">03</span><b>Confirm</b><p>Send it to us on WhatsApp. We check the file and give you the final price.</p></div>
         </div>
 
-        <div className="est-frame">
-          <iframe src={src} title="Instant 3D printing estimate" loading="lazy" allow="" referrerPolicy="no-referrer-when-downgrade" />
-        </div>
+        <EstimateFrame src={src} origin={new URL(SITE.estimateUrl).origin} />
         <p className="soon" style={{ marginTop: 14 }}>Estimator not loading? <a href={`${SITE.estimateUrl}`} target="_blank" rel="noopener" style={{ color: "var(--accent-text)", textDecoration: "underline" }}>Open it in its own page</a>.</p>
 
         <div className="note-box">
-          <b>What the price range includes.</b> Printing, material and finishing, with our usual quantity discounts. Delivery, rush jobs, and design or modelling work are extra. We confirm everything on WhatsApp before you pay anything.
+          <b>What the price range includes.</b> Printing, material and finishing, with our usual quantity discounts. We confirm everything on WhatsApp before you pay anything.
         </div>
         <div className="note-box" style={{ marginTop: 14 }}>
           <b>No 3D file?</b> That is fine. Send a photo, a sketch or just a description on{" "}

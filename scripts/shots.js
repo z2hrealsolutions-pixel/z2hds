@@ -1,7 +1,7 @@
 // usage: NODE_PATH=$(npm root -g) node scripts/shots.js <baseUrl> <outDir>
 const { chromium } = require("playwright");
 const [base, out] = process.argv.slice(2);
-const pages = [["home", "/"], ["services", "/services"], ["gallery", "/gallery"], ["estimate", "/estimate"], ["contact", "/contact"], ["blog", "/blog"], ["post", "/blog/how-much-does-3d-printing-cost-in-sri-lanka"]];
+const pages = [["home", "/"], ["services", "/services"], ["materials", "/services/materials"], ["gallery", "/gallery"], ["estimate", "/estimate"], ["contact", "/contact"], ["blog", "/blog"], ["post-cost", "/blog/how-much-does-3d-printing-cost-in-sri-lanka"], ["post-what", "/blog/what-is-3d-printing"], ["post-machines", "/blog/3d-printing-machines-explained"], ["post-filament", "/blog/3d-printing-materials-and-filament"], ["post-choose", "/blog/pla-petg-abs-tpu-which-3d-printing-material"]];
 (async () => {
   const b = await chromium.launch();
   const report = [];

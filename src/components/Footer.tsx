@@ -10,7 +10,7 @@ export default function Footer() {
           <div>
             <Link className="brand" href="/"><span className="mark" aria-hidden="true" />Z2H Design Studio</Link>
             <p className="small" style={{ marginTop: 14, maxWidth: "22em" }}>3D printing, 3D modelling and product development in Maharagama, Sri Lanka.</p>
-            <p className="small" style={{ marginTop: 14 }}>{SITE.legalName}<br />Reg. No. {SITE.regNo}</p>
+            <p className="small" style={{ marginTop: 14 }}>{SITE.legalName}</p>
           </div>
           <div>
             <h4>Visit</h4>
