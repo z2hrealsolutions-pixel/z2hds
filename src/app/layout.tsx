@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
+import ZiyaMount from "@/components/ziya/ZiyaMount";
 import { SITE, waHref, waIsLive } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header waUrl={waHref("Hello Z2H, I would like to talk about a project.")} waLive={waIsLive()} />
         <main id="main">{children}</main>
         <Footer />
+        <ZiyaMount />
       </body>
     </html>
   );

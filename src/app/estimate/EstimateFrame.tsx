@@ -21,7 +21,7 @@ export default function EstimateFrame({ src, origin }: { src: string; origin: st
   return (
     <div className="est-frame">
       {/* 420 px until the estimator reports its real height */}
-      <iframe ref={ref} src={listening ? src : undefined} title="Instant 3D printing estimate" style={{ height: h ?? 420 }} allow="" referrerPolicy="no-referrer-when-downgrade" />
+      <iframe ref={ref} data-ziya-target="estimate" src={listening ? src : undefined} title="Instant 3D printing estimate" style={{ height: h ?? 420 }} allow="" referrerPolicy="no-referrer-when-downgrade" />
     </div>
   );
 }

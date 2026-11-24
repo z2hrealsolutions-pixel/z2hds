@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { SITE } from "@/lib/site";
+import { ziyaEmit } from "@/components/ziya/emit";
 
 const TOPICS: Record<string, string> = {
   print: "3D printing",
@@ -33,7 +34,7 @@ export default function ContactForm() {
   const wa = SITE.whatsapp ? `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(body())}` : "";
 
   return (
-    <form style={{ display: "grid", gap: 16, minWidth: 0 }} onSubmit={(e) => e.preventDefault()} aria-label="Message form">
+    <form data-ziya-target="contact" style={{ display: "grid", gap: 16, minWidth: 0 }} onSubmit={(e) => e.preventDefault()} aria-label="Message form">
       <label style={label}>Your name<input style={field} value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" required /></label>
       <label style={label}>Phone number<input style={field} value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" inputMode="tel" /></label>
       <label style={label}>What is it about?
@@ -44,9 +45,9 @@ export default function ContactForm() {
       <label style={label}>Tell us about it<textarea style={{ ...field, minHeight: 140, resize: "vertical" }} value={msg} onChange={(e) => setMsg(e.target.value)} placeholder="What do you want made? Size, colour, how many, and when you need it." required /></label>
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
         {wa
-          ? <a className="btn btn-primary" href={ok ? wa : undefined} aria-disabled={!ok} target="_blank" rel="noopener" style={ok ? undefined : { opacity: .45, pointerEvents: "none" }}>Send on WhatsApp</a>
+          ? <a className="btn btn-primary" href={ok ? wa : undefined} aria-disabled={!ok} target="_blank" rel="noopener" onClick={() => ok && ziyaEmit("form-sent")} style={ok ? undefined : { opacity: .45, pointerEvents: "none" }}>Send on WhatsApp</a>
           : <span className="btn btn-ghost" style={{ opacity: .6 }} title="WhatsApp number coming soon">WhatsApp: coming soon</span>}
-        <a className="btn btn-primary" href={ok ? mail : undefined} aria-disabled={!ok} style={ok ? undefined : { opacity: .45, pointerEvents: "none" }}>Send by email</a>
+        <a className="btn btn-primary" href={ok ? mail : undefined} aria-disabled={!ok} onClick={() => ok && ziyaEmit("form-sent")} style={ok ? undefined : { opacity: .45, pointerEvents: "none" }}>Send by email</a>
       </div>
       <p className="soon">Add your photos or files after the message opens, in WhatsApp or in your email.</p>
     </form>
